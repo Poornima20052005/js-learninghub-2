@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS Learning Hub - Part 2</title>
+
+<style>
+body{
+    font-family: Arial;
+    margin:0;
+    background:#f4f6fb;
+}
+
+header{
+    background:linear-gradient(90deg,#6a5acd,#4b3dbf);
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+nav{
+    background:black;
+    color:white;
+    text-align:center;
+    padding:10px;
+}
+
+.section{
+    background:white;
+    margin:25px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+h2{ color:#4b3dbf; }
+
+.code{
+    background:#07121f;
+    color:#00ff9d;
+    padding:15px;
+    border-radius:8px;
+    white-space:pre-wrap;
+}
+
+button{
+    margin-top:10px;
+    padding:10px 18px;
+    border:none;
+    border-radius:20px;
+    background:linear-gradient(90deg,#4facfe,#00f2fe);
+    color:white;
+    cursor:pointer;
+}
+
+.output{
+    margin-top:10px;
+    padding:10px;
+    background:#eef1ff;
+    border-radius:6px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>JavaScript Learning Hub – Part 2</h1>
+<p>DOM • Objects • Classes • Events • Student Grade</p>
+</header>
+
+<nav>Home</nav>
+
+<!-- ================= DOM ================= -->
+<div class="section">
+<h2>DOM Examples</h2>
+
+<div class="code">
+document.getElementById("demo").innerText="Hello DOM!";
+</div>
+
+<button onclick="domExample()">Run Example</button>
+<p id="demo" class="output">Original Text</p>
+
+<div class="code">
+document.getElementById("box").style.background="orange";
+</div>
+
+<button onclick="domStyle()">Change Color</button>
+<div id="box" class="output">Color Box</div>
+
+</div>
+
+<!-- ================= OBJECTS ================= -->
+<div class="section">
+<h2>Objects Example</h2>
+
+<div class="code">
+let student={
+ name:"Poornima",
+ age:21
+};
+</div>
+
+<button onclick="objectExample()">Run Example</button>
+<div id="objOut" class="output"></div>
+
+</div>
+
+<!-- ================= CLASSES ================= -->
+<div class="section">
+<h2>Classes Example</h2>
+
+<div class="code">
+class Student{
+ constructor(name){
+  this.name=name;
+ }
+}
+</div>
+
+<button onclick="classExample()">Run Example</button>
+<div id="classOut" class="output"></div>
+
+</div>
+
+<!-- ================= EVENTS ================= -->
+<div class="section">
+<h2>Events Example</h2>
+
+<button onclick="eventClick()">Click Me</button>
+
+<div id="hoverBox" class="output"
+onmouseover="eventHover()">
+Hover Over Me
+</div>
+
+<input type="text" placeholder="Type here"
+onkeyup="eventType(this.value)">
+<p id="eventOut" class="output"></p>
+
+</div>
+
+<!-- ================= STUDENT GRADE ================= -->
+<div class="section">
+<h2>Student Grade System</h2>
+
+<div class="code">
+if(marks >=90) grade="A";
+else if(marks >=75) grade="B";
+else if(marks >=50) grade="C";
+else grade="Fail";
+</div>
+
+<button onclick="gradeExample1()">Run Example</button>
+<div id="gradeOut1" class="output"></div>
+
+<br><br>
+
+<input type="number" id="marksInput" placeholder="Enter Marks">
+<button onclick="gradeExample2()">Calculate Grade</button>
+<div id="gradeOut2" class="output"></div>
+
+<br><br>
+
+<button onclick="gradeExample3()">Student Object Grade</button>
+<div id="gradeOut3" class="output"></div>
+
+</div>
+
+<script>
+
+/* DOM */
+function domExample(){
+ document.getElementById("demo").innerText="Hello DOM!";
+}
+
+function domStyle(){
+ document.getElementById("box").style.background="orange";
+}
+
+/* OBJECT */
+function objectExample(){
+ let student={name:"Poornima",age:21};
+ document.getElementById("objOut").innerText=
+ student.name+" Age: "+student.age;
+}
+
+/* CLASS */
+function classExample(){
+ class Student{
+  constructor(name){
+   this.name=name;
+  }
+ }
+ let s=new Student("Rahul");
+ document.getElementById("classOut").innerText=s.name;
+}
+
+/* EVENTS */
+function eventClick(){
+ alert("Button Clicked!");
+}
+
+function eventHover(){
+ document.getElementById("hoverBox").innerText="Mouse Hovered!";
+}
+
+function eventType(value){
+ document.getElementById("eventOut").innerText=value;
+}
+
+/* STUDENT GRADE */
+
+// Example 1
+function gradeExample1(){
+ let marks=85;
+ let grade;
+
+ if(marks>=90) grade="A";
+ else if(marks>=75) grade="B";
+ else if(marks>=50) grade="C";
+ else grade="Fail";
+
+ document.getElementById("gradeOut1")
+ .innerText="Marks: "+marks+" Grade: "+grade;
+}
+
+// Example 2 (Input)
+function gradeExample2(){
+ let marks=document.getElementById("marksInput").value;
+ let grade;
+
+ if(marks>=90) grade="A";
+ else if(marks>=75) grade="B";
+ else if(marks>=50) grade="C";
+ else grade="Fail";
+
+ document.getElementById("gradeOut2")
+ .innerText="Your Grade: "+grade;
+}
+
+// Example 3 (Object)
+function gradeExample3(){
+
+ let student={
+  name:"Anjali",
+  marks:92,
+  getGrade:function(){
+   if(this.marks>=90) return "A";
+   else if(this.marks>=75) return "B";
+   else if(this.marks>=50) return "C";
+   else return "Fail";
+  }
+ };
+
+ document.getElementById("gradeOut3")
+ .innerText=student.name+" Grade: "+student.getGrade();
+}
+
+</script>
+
+</body>
+</html>
